@@ -1,0 +1,118 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="YoutubePlus.View.HomeView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="False">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="#FF101010">
+        <!--Pivot Control-->
+        <phone:Panorama Title="YoutubePlus" TitleTemplate="{StaticResource SmallPanoramaTitle}" >
+            <!--Pivot item one-->
+            <phone:PanoramaItem Header="recommended" HeaderTemplate="{StaticResource SmallPanoramaItemHeader}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <phone:LongListSelector Grid.Row="0" ItemsSource="{Binding RecommendedVideos}" ItemTemplate="{StaticResource VideoTemplate}" Tap="Recommended_Tap" Margin="14, -30, 0, 0">
+                        
+                    </phone:LongListSelector>
+                    <ProgressBar x:Name="progressBar" IsIndeterminate="True" IsEnabled="True" Foreground="#FF107C10" />
+                    <Button Background="#FF107C10" Tap="ButtonRecommendedMore_Tap" Grid.Row="1" Content="more" Height="70" BorderBrush="#FF107C10"/>
+                </Grid>
+            </phone:PanoramaItem>
+
+            <phone:PanoramaItem Header="subscriptions" HeaderTemplate="{StaticResource SmallPanoramaItemHeader}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <phone:LongListSelector Grid.Row="0" ItemsSource="{Binding SubscriptionVideos}" ItemTemplate="{StaticResource VideoTemplate}" Tap="Subscriptions_Tap" Margin="14, -30, 0, 0">
+                        
+                    </phone:LongListSelector>
+                    <Button Background="#FF107C10" Tap="ButtonSubscriptionsMore_Tap" Grid.Row="1" Content="more" Height="70" BorderBrush="#FF107C10"/>
+                </Grid>
+            </phone:PanoramaItem>
+
+            <phone:PanoramaItem Header="spotlight" Orientation="Horizontal" HeaderTemplate="{StaticResource SmallPanoramaItemHeader}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200"/>
+                        <RowDefinition Height="200"/>
+                    </Grid.RowDefinitions>
+
+                    <Button Content="popular" Background="#FF107C10" FontSize="35" FontWeight="Light" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" BorderBrush="#FF107C10" Margin="-5,-5" />
+                    <Button Content="trending" Grid.Column="1" FontSize="35" FontWeight="Light" Background="#FF107C10" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" BorderBrush="#FF107C10" Margin="-5,-5" />
+                    <Button Content="trending" Grid.Column="2" FontSize="35" FontWeight="Light" Background="#FF107C10" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" BorderBrush="#FF107C10" Margin="-5,-5" />
+
+                    <Button Content="trending" FontSize="35" Grid.Row="1" FontWeight="Light" Background="#FF107C10" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" BorderBrush="#FF107C10" Margin="-5,-5" />
+                    <Button Content="trending" Grid.Row="1" Grid.Column="1" FontSize="35" FontWeight="Light" Background="#FF107C10" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" BorderBrush="#FF107C10" Margin="-5,-5" />
+                    <Button Content="trending" Grid.Row="1" Grid.Column="2" FontSize="35" FontWeight="Light" Background="#FF107C10" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" BorderBrush="#FF107C10" Margin="-5,-5" />
+                </Grid>
+            </phone:PanoramaItem>
+
+            <phone:PanoramaItem Header="browse" HeaderTemplate="{StaticResource SmallPanoramaItemHeader}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                 
+                <Grid Margin="-5,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="105"/>
+                        <ColumnDefinition Width="105"/>
+                        <ColumnDefinition Width="105"/>
+                        <ColumnDefinition Width="105"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="105"/>
+                        <RowDefinition Height="105"/>
+                    </Grid.RowDefinitions>
+
+                    <Button Background="#FF107C10" FontSize="35" FontWeight="Light" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" BorderBrush="#FF107C10" Margin="-7,-7" />
+                    <Button Grid.Column="1" FontSize="35" FontWeight="Light" Background="#FF107C10" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" BorderBrush="#FF107C10" Margin="-7,-7" />
+                    <Button Grid.Column="2" FontSize="35" FontWeight="Light" Background="#FF107C10" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" BorderBrush="#FF107C10" Margin="-7,-7" />
+                    <Button Grid.Column="3" FontSize="35" FontWeight="Light" Background="#FF107C10" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" BorderBrush="#FF107C10" Margin="-7,-7" />
+
+                    <Button FontSize="35" Grid.Row="1" FontWeight="Light" Background="#FF107C10" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" BorderBrush="#FF107C10" Margin="-7,-7" />
+                    <Button Grid.Row="1" Grid.Column="1" FontSize="35" FontWeight="Light" Background="#FF107C10" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" BorderBrush="#FF107C10" Margin="-7,-7" />
+                    <Button Grid.Row="1" Grid.Column="2" FontSize="35" FontWeight="Light" Background="#FF107C10" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" BorderBrush="#FF107C10" Margin="-7,-7" />
+                    <Button Grid.Row="1" Grid.Column="3" FontSize="35" FontWeight="Light" Background="#FF107C10" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" BorderBrush="#FF107C10" Margin="-7,-7" />
+
+                </Grid>
+
+                    <phone:LongListSelector Grid.Row="1" ItemsSource="{Binding SubChannels}" ItemTemplate="{StaticResource ChannelTemplate}" Tap="SubChannel_Tap" Margin="0, 15, 0, 0">
+
+                    </phone:LongListSelector>
+                </Grid>
+            </phone:PanoramaItem>
+        </phone:Panorama>
+    </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar x:Name="appBar" IsVisible="True" IsMenuEnabled="True" Mode="Minimized">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Search" Click="ButtonSearch_Click"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="account"/>
+                <shell:ApplicationBarMenuItem Text="settings"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+</phone:PhoneApplicationPage>

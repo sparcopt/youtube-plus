@@ -1,0 +1,71 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="YoutubePlus.View.SearchView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="False">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="#FF101010">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--TitlePanel contains the name of the application and page title-->
+            <StackPanel Grid.Row="0" Margin="12,17,0,28">
+                <TextBlock Text="YOUTUBEPLUS" Style="{StaticResource PhoneTextNormalStyle}"/>
+                <TextBlock Text="search" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            </StackPanel>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBox Grid.Row="0" x:Name="TextBoxSearch" GotFocus="TextBoxSearch_GotFocus"/>
+                <TextBlock Grid.Row="1" Text="Category" Margin="14, 0, 0, -10"/>
+                <toolkit:ListPicker Grid.Row="2" x:Name="ListPickerCategory" Background="#FF107C10" BorderBrush="#FF107C10">
+                    <toolkit:ListPickerItem>
+                        <TextBlock Text="video" />
+                    </toolkit:ListPickerItem>
+                    <toolkit:ListPickerItem>
+                        <TextBlock Text="channel" />
+                    </toolkit:ListPickerItem>
+                    <toolkit:ListPickerItem>
+                        <TextBlock Text="playlist" />
+                    </toolkit:ListPickerItem>
+                </toolkit:ListPicker>
+                <!--<Button Grid.Column="1" Grid.Row="1" Background="#FF107C10" Tap="ButtonSearch_Tap" Height="70" Width="70" Content=">" BorderBrush="#FF107C10" Margin="-15, 0, 0, 0"/>-->
+            </Grid>
+            
+            <Grid Grid.Row="2">
+                <phone:LongListSelector x:Name="ListSelector" Grid.Row="0" ItemsSource="{Binding SearchResults}" ItemTemplate="{Binding SearchResults, Converter={StaticResource CategoryConverter}}" Tap="ListSelectorSearch_Tap" Margin="14, 0, 0, 0">
+                    
+                </phone:LongListSelector>
+            </Grid>
+        </Grid>
+    </Grid>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar x:Name="appBar" IsVisible="True" IsMenuEnabled="True" Mode="Default">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Search" Click="ButtonSearch_Click"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="account"/>
+                <shell:ApplicationBarMenuItem Text="settings"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+</phone:PhoneApplicationPage>
